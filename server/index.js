@@ -58,6 +58,12 @@ io.on('connection', (socket) => {
         socket.to(room).emit('chatroom_users', chatRoomUsers);
         socket.emit('chatroom_users', chatRoomUsers);
 
+        harperGetMessages(room)
+            .then((last100Messages) => {
+                socket.emit('last_100_messages', last100Messages);
+            })
+            .catch((err) => console.log(err));
+
     });
 
     socket.on('send_message', (data) => {
@@ -66,27 +72,8 @@ io.on('connection', (socket) => {
         harperSaveMessage(message, username, room, __createdtime__, bot)
             .then((response) => console.log(response))
             .catch((err) => console.log(err));
-
-        // harperGetMessages(room)
-        //     .then((last100Messages) => {
-        //         socket.emit('last_100_messages', last100Messages);
-        //     })
-        //     .catch((err) => console.log(err));
     });
 
-    socket.on('bot_send_message', (data) => {
-        const { message, username, room, __createdtime__ } = data;
-        io.in(room).emit('bot_receive_message', data);
-        harperSaveMessage(message, username, room, __createdtime__)
-            .then((response) => console.log(response))
-            .catch((err) => console.log(err));
-
-        // harperGetMessages(room)
-        //     .then((last100Messages) => {
-        //         socket.emit('last_100_messages', last100Messages);
-        //     })
-        //     .catch((err) => console.log(err));
-    });
 
     socket.on('leave_room', (data) => {
         const { username, room } = data;
