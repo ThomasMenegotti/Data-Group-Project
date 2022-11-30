@@ -41,6 +41,8 @@ const Messages = ({ socket }) => {
         messagesColumnRef.current.scrollTop = messagesColumnRef.current.scrollHeight;
     }, [messagesReceived]);
 
+
+    //This function will sort messages and appear in ASCN order
     function sortMessagesByDate(messages) {
         return messages.sort(
             (a, b) => parseInt(a.__createdtime__) - parseInt(b.__createdtime__)

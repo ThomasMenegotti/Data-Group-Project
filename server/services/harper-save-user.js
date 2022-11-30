@@ -1,5 +1,7 @@
 var axios = require('axios');
 
+
+//This function is called everytime a new user joins any room, user will get added to DB with the corresponding room they joined
 function harperSaveUser(username, room) {
     const dbUrl = process.env.HARPERDB_URL;
     const dbPw = process.env.HARPERDB_PW;

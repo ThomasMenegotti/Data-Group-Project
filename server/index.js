@@ -28,6 +28,7 @@ let allUsers = [];
 io.on('connection', (socket) => {
     console.log(`User connected ${socket.id}`);
 
+    //Once a socket 'hears' that someone is joining a room, run this below
     socket.on('join_room', (data) => {
         const { username, room } = data;
         socket.join(room);
@@ -44,7 +45,7 @@ io.on('connection', (socket) => {
             .then((response) => console.log(response))
             .catch((err) => console.log(err));
 
-
+        //This will emit the receive_message for another function to 'hear' it
         socket.emit('receive_message', {
             message: `Welcome ${username}`,
             username: CHAT_BOT,

@@ -4,7 +4,9 @@ import MessagesReceived from './messages';
 import BotMessagesReceived from './botmessages';
 import SendMessage from './send-message';
 
+//The code that will run once the user is in chat room
 const Chat = ({ username, room, socket }) => {
+    //Easter egg, if user inputs ChatBot as their username, will change the return
     if (username === 'ChatBot') {
         return (
             <div className={styles.chatContainer}>

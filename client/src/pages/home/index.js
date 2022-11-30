@@ -1,10 +1,12 @@
 import styles from './styles.module.css';
 import { useNavigate } from 'react-router-dom';
 
+//Code for our home screen below
 const Home = ({ username, setUsername, room, setRoom, socket }) => {
 
     const navigate = useNavigate();
 
+    //If user presses join room, this is the function that will run
     const joinRoom = () => {
         if (room !== '' && username !== '') {
             socket.emit('join_room', { username, room });
@@ -12,10 +14,11 @@ const Home = ({ username, setUsername, room, setRoom, socket }) => {
         navigate('/chat', { replace: true });
     }
 
+    //The HTML code gets returned and is able to be changed based on the values of variables.
     return (
         <div className={styles.container}>
             <div className={styles.formContainer}>
-                <h1>{'Chat Room Testing!'}</h1>
+                <h1>{'Chat Room!'}</h1>
                 <div className={styles.username}>
                     <label for='username'>Username:</label>
                     <input

@@ -1,6 +1,8 @@
 import styles from './styles.module.css';
 import React, { useState } from 'react';
 
+
+/*FOR FUTURE FUNCTIONALITY*/
 const BotSendMessage = ({ socket, username, room }) => {
     const [message, setMessage] = useState('');
 
